@@ -1,4 +1,6 @@
 from selenium import webdriver
+import time
+from selenium.webdriver.common.keys import Keys
 
 #local from selenium.webdriver.chrome.service import Service
 # service = Service("absolute path of chromediver.exe")
@@ -18,6 +20,9 @@ def main():
     driver = get_driver()
 
     driver.find_element("id", "id_username").send_keys("automated")
+    time.sleep(2)
+    driver.find_element("id", "id_password").send_keys("automatedautomated" + Keys.RETURN)
+    print(driver.current_url)
    
 
 print(main())
