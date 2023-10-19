@@ -22,6 +22,9 @@ def main():
     driver.find_element("id", "id_username").send_keys("automated")
     time.sleep(2)
     driver.find_element("id", "id_password").send_keys("automatedautomated" + Keys.RETURN)
+    #print(driver.current_url)
+    time.sleep(2)
+    driver.find_element(by="xpath", value="/html/body/nav/div/a").click()
     print(driver.current_url)
    
 
