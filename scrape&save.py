@@ -27,9 +27,9 @@ def clean_text(text):
 def save_result(output):
     """save result in new file"""
     current_datetime = datetime.now()
-    file_name = current_datetime.strftime("%Y-%m-%d_%H-%M-%S.txt")
+    file_name = current_datetime.strftime("%Y-%m-%d.txt")
     with open(file_name, "w+") as file_object:
-        file_object.write(output)
+        file_object.write(str(output))
 
 
 
@@ -39,8 +39,8 @@ def main():
         driver = get_driver()
         time.sleep(2)
         element = driver.find_element(by="xpath", value="/html/body/div[1]/div/h1[2]")
-        output = clean_text(element.text)
-        save_result1 = save_result(output)
+        output_el = clean_text(element.text)
+        save_result1 = save_result(output_el)
         return save_result1
 
 print(main())
