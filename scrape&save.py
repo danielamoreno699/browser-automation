@@ -35,12 +35,13 @@ def save_result(output):
 
 
 def main():
-    driver = get_driver()
-    time.sleep(2)
-    element = driver.find_element("xpath", "/html/body/div[1]/div/h1[2]")
-    output = clean_text(element.text)
-    save_result1 = save_result(output)
-    return save_result1
+    while True:
+        driver = get_driver()
+        time.sleep(2)
+        element = driver.find_element("xpath", "/html/body/div[1]/div/h1[2]")
+        output = clean_text(element.text)
+        save_result1 = save_result(output)
+        return save_result1
 
 print(main())
 
