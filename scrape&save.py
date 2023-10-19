@@ -5,6 +5,7 @@
 
 from selenium import webdriver
 import time
+from datetime import datetime
 
 def get_driver():
     options = webdriver.ChromeOptions()
@@ -23,11 +24,23 @@ def clean_text(text):
     output = float(text.split(": ")[1])
     return output
 
+def save_result(output):
+    """save result in new file"""
+    current_datetime = datetime.now()
+    file_name = current_datetime.strftime("%Y-%m-%d_%H-%M-%S.txt")
+    with open(file_name, "w+") as file_object:
+        file_object.write(output)
+
+
+
+
 def main():
     driver = get_driver()
     time.sleep(2)
     element = driver.find_element("xpath", "/html/body/div[1]/div/h1[2]")
-    return clean_text(element.text)
+    output = clean_text(element.text)
+    save_result1 = save_result(output)
+    return save_result1
 
 print(main())
 
