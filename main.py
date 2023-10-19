@@ -1,7 +1,19 @@
 from selenium import webdriver
 
-# Specify the path to the ChromeDriver executable
-chromedriver_path = "C:\Users\us\Downloads\chromedriver-win64.zip\chromedriver-win64"
+def get_driver():
+    options = webdriver.ChromeOptions()
+    options.add_argument("disable-infobars")
+    options.add_argument("start-maximized")
+    options.add_argument('disable-dev-shm-usage')
+    options.add_argument("no-sandbox")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"] )
+    options.add_argument("disable-blink-features=AutomationControlled")
+    driver = webdriver.Chrome(options)
+    driver.get("https://automated.pythonanywhere.com")
+    return driver
 
-# Initialize a Chrome WebDriver instance
-driver = webdriver.Chrome(executable_path=chromedriver_path)
+def main():
+    driver = get_driver()
+    element = driver.find_element("xpath", "/html/body/div[1]/div/h1[1]")
+    return element
+print(main())
