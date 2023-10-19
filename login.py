@@ -1,5 +1,5 @@
 from selenium import webdriver
-import time
+
 #local from selenium.webdriver.chrome.service import Service
 # service = Service("absolute path of chromediver.exe")
 def get_driver():
@@ -11,18 +11,13 @@ def get_driver():
     options.add_experimental_option("excludeSwitches", ["enable-automation"] )
     options.add_argument("disable-blink-features=AutomationControlled")
     driver = webdriver.Chrome(options)
-    driver.get("https://automated.pythonanywhere.com")
+    driver.get("https://automated.pythonanywhere.com/login/")
     return driver
-
-def clean_text(text):
-    """extract only temperture"""
-    output = float(text.split(": ")[1])
-    return output
 
 def main():
     driver = get_driver()
-    time.sleep(2)
-    element = driver.find_element("xpath", "/html/body/div[1]/div/h1[2]")
-    return clean_text(element.text)
+
+    driver.find_element("id", "id_username").send_keys("automated")
+   
 
 print(main())
